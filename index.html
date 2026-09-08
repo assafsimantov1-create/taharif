@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="התעריף — בדיקת תמחור לעצמאים בישראל. מחיר רצפה, מחיר יעד והפער בין מה שאתה גובה למה שאתה צריך לגבות.">
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+<title>התעריף</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;600;700&family=Heebo:wght@400;500;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B131C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23C39A5A' text-anchor='middle'%3E%E2%82%AA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0B131C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="התעריף">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://taharif.website/">
+<meta property="og:title" content="התעריף — בדיקת תמחור לעצמאים">
+<meta property="og:description" content="המספר שאתה אומר בטלפון לא נבדק מעולם. גלה בשלוש דקות מה מחיר הרצפה שלך, ומה הפער בינו לבין מה שאתה גובה היום.">
+<meta property="og:image" content="https://taharif.website/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="התעריף — בדיקת תמחור לעצמאים">
+<meta name="twitter:description" content="גלה בשלוש דקות מה מחיר הרצפה שלך, ומה הפער בינו לבין מה שאתה גובה היום.">
+<meta name="twitter:image" content="https://taharif.website/og.png">
+
+</head>
+<body>
+<style>
+/* ============================================================
+   התעריף — single visual world: ink ledger + brass instrument.
+   Committed single-theme design (a purchased product page must
+   look identical to every buyer), so every colour is painted.
+   ============================================================ */
+:root{
+  --ink:        #0B131C;
+  --ink-2:      #101B26;
+  --ink-3:      #17242F;
+  --paper:      #F2EEE6;
+  --paper-2:    #E6E0D4;
+  --paper-3:    #D8D1C2;
+  --text:       #EFEAE0;
+  --text-dim:   #9B9A92;
+  --ink-text:   #14202B;
+  --ink-dim:    #5B6670;
+  --brass:      #C39A5A;
+  --brass-deep: #8C6931;
+  --brass-soft: rgba(195,154,90,.14);
+  --good:       #5E8F6C;
+  --bad:        #A85C50;
+  --line:       rgba(239,234,224,.13);
+  --line-2:     rgba(239,234,224,.28);
+  --line-p:     rgba(20,32,43,.16);
+  --line-p2:    rgba(20,32,43,.32);
+
+  --f-display: "Frank Ruhl Libre", "Times New Roman", serif;
+  --f-body:    "Assistant", "Segoe UI", system-ui, sans-serif;
+  --f-util:    "Heebo", "Assistant", system-ui, sans-serif;
+
+  --sp: clamp(20px, 5vw, 56px);
+  --maxw: 1080px;
+  --readw: 62ch;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--f-body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.app{direction:rtl}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:700;line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+button{font-family:inherit;font-size:inherit;color:inherit}
+a{color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(195,154,90,.4)}
+a:hover{border-bottom-color:var(--brass)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.num{font-family:var(--f-display);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--sp)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* eyebrow ------------------------------------------------- */
+.eyebrow{
+  font-family:var(--f-util);font-size:12.5px;font-weight:500;
+  letter-spacing:.16em;color:var(--brass);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:120px}
+
+/* nav ------------------------------------------------------ */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding-block:18px;border-bottom:1px solid var(--line);
+}
+.mark{display:flex;align-items:baseline;gap:9px}
+.mark b{font-family:var(--f-display);font-weight:900;font-size:24px;letter-spacing:-.01em}
+.mark span{font-family:var(--f-util);font-size:11px;letter-spacing:.18em;color:var(--text-dim)}
+.nav-cta{
+  font-family:var(--f-util);font-size:14px;font-weight:500;
+  border:1px solid var(--line-2);background:none;padding:8px 16px;
+  border-radius:2px;cursor:pointer;transition:.18s;
+}
+.nav-cta:hover{border-color:var(--brass);color:var(--brass)}
+
+/* hero ----------------------------------------------------- */
+.hero{padding-block:clamp(48px,8vw,88px) clamp(36px,5vw,56px)}
+.hero h1{
+  font-size:clamp(38px,7.2vw,74px);font-weight:700;letter-spacing:-.02em;
+  margin-block:22px 0;max-width:16ch;
+}
+.hero h1 em{font-style:normal;color:var(--brass);}
+.hero .lede{
+  margin-top:22px;max-width:var(--readw);font-size:clamp(17px,2.1vw,20px);
+  color:var(--text-dim);font-weight:300;
+}
+.hero .lede strong{color:var(--text);font-weight:600}
+
+.facts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1px;background:var(--line);border-block:1px solid var(--line);
+  margin-top:clamp(36px,5vw,52px);
+}
+.fact{background:var(--ink);padding:20px 22px}
+.fact b{display:block;font-family:var(--f-display);font-size:31px;font-weight:700;color:var(--brass);letter-spacing:-.01em}
+.fact span{display:block;font-size:14.5px;color:var(--text-dim);margin-top:4px;line-height:1.45}
+
+/* section shells ------------------------------------------- */
+.sec{padding-block:clamp(56px,8vw,92px)}
+.sec-head{max-width:var(--readw)}
+.sec-head h2{font-size:clamp(28px,4.4vw,42px);margin-top:16px;letter-spacing:-.015em}
+.sec-head p{margin-top:14px;color:var(--text-dim);font-weight:300}
+
+/* ===== INSTRUMENT (paper panel) =========================== */
+.instrument{
+  background:var(--paper);color:var(--ink-text);
+  border-radius:3px;overflow:hidden;
+  box-shadow:0 1px 0 rgba(255,255,255,.06);
+}
+.inst-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:12px;padding:18px 24px;border-bottom:1px solid var(--line-p);
+  background:var(--paper-2);
+}
+.inst-head h3{font-size:20px;color:var(--ink-text)}
+.inst-head .tag{
+  font-family:var(--f-util);font-size:11.5px;letter-spacing:.14em;
+  color:var(--ink-dim);
+}
+.inst-body{padding:24px}
+
+/* profession chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip{
+  font-family:var(--f-util);font-size:14px;font-weight:400;
+  background:none;border:1px solid var(--line-p);color:var(--ink-dim);
+  padding:7px 14px;border-radius:2px;cursor:pointer;transition:.15s;
+}
+.chip:hover{border-color:var(--line-p2);color:var(--ink-text)}
+.chip[aria-pressed="true"]{
+  background:var(--ink-text);border-color:var(--ink-text);color:var(--paper);font-weight:500;
+}
+
+/* fields */
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px 20px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-family:var(--f-util);font-size:13px;font-weight:500;color:var(--ink-dim);line-height:1.35}
+.field .in{
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--line-p);border-radius:2px;background:#FBF9F5;
+  padding:0 12px;transition:.15s;
+}
+.field .in:focus-within{border-color:var(--brass-deep);background:#fff}
+.field .in span{font-family:var(--f-util);font-size:14px;color:var(--ink-dim);flex-shrink:0}
+.field input{
+  width:100%;border:0;background:none;outline:none;padding:11px 0;
+  font-family:var(--f-display);font-size:20px;font-weight:500;color:var(--ink-text);
+  font-variant-numeric:tabular-nums;
+}
+.field input::-webkit-outer-spin-button,.field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.field input[type=number]{-moz-appearance:textfield}
+.hint{font-size:12.5px;color:var(--ink-dim);opacity:.85;line-height:1.4}
+
+.example-note{
+  display:flex;gap:9px;align-items:center;font-family:var(--f-util);font-size:12.5px;
+  color:var(--ink-dim);margin-bottom:18px;
+}
+.example-note i{width:6px;height:6px;border-radius:50%;background:var(--brass-deep);flex-shrink:0}
+
+/* ===== RESULTS ============================================ */
+.results{border-top:1px solid var(--line-p);background:var(--paper-2)}
+.res-pad{padding:24px}
+
+/* the band ruler — signature graphic */
+.band-label{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-family:var(--f-util);font-size:12px;letter-spacing:.12em;color:var(--ink-dim);
+  margin-bottom:10px;
+}
+.band{position:relative;height:64px;margin-bottom:8px}
+.band-track{
+  position:absolute;inset-inline:0;top:22px;height:16px;display:flex;
+  border:1px solid var(--line-p2);border-radius:2px;overflow:hidden;
+}
+.z{height:100%}
+.z-under{background:repeating-linear-gradient(-45deg,rgba(168,92,80,.22) 0 5px,rgba(168,92,80,.08) 5px 10px)}
+.z-safe{background:var(--paper-3)}
+.z-prime{background:linear-gradient(90deg,rgba(195,154,90,.55),rgba(195,154,90,.28))}
+.tick{position:absolute;top:8px;width:1px;height:44px;background:var(--ink-text);opacity:.55}
+.tick.major{opacity:1;height:52px;top:4px}
+.tick-txt{
+  position:absolute;top:60px;transform:translateX(50%);
+  font-family:var(--f-util);font-size:11.5px;color:var(--ink-dim);white-space:nowrap;
+}
+.pin{position:absolute;top:0;transform:translateX(50%);text-align:center}
+.pin i{display:block;width:2px;height:46px;background:var(--bad);margin:0 auto}
+.pin b{
+  display:inline-block;font-family:var(--f-util);font-size:11.5px;font-weight:700;
+  background:var(--bad);color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;
+}
+.band-scale{
+  display:flex;justify-content:space-between;
+  font-family:var(--f-util);font-size:11.5px;color:var(--ink-dim);
+  border-top:1px solid var(--line-p);padding-top:8px;margin-top:26px;
+}
+
+/* three price cards */
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line-p);margin-top:26px}
+.price{background:var(--paper);padding:18px 20px}
+.price .k{font-family:var(--f-util);font-size:12px;letter-spacing:.12em;color:var(--ink-dim)}
+.price .v{font-family:var(--f-display);font-size:clamp(30px,4.6vw,40px);font-weight:700;letter-spacing:-.02em;margin-top:6px;line-height:1}
+.price .d{font-size:13.5px;color:var(--ink-dim);margin-top:8px;line-height:1.45}
+.price.is-floor .v{color:var(--bad)}
+.price.is-target .v{color:var(--ink-text)}
+.price.is-prime .v{color:var(--brass-deep)}
+
+/* the verdict */
+.verdict{
+  margin-top:26px;border:1px solid var(--line-p2);border-radius:3px;
+  background:var(--paper);padding:22px 24px;
+}
+.verdict .k{font-family:var(--f-util);font-size:12px;letter-spacing:.14em;color:var(--ink-dim)}
+.verdict .big{
+  font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;line-height:1.1;
+  font-size:clamp(30px,5.4vw,50px);margin-top:8px;
+}
+.verdict .big.neg{color:var(--bad)}
+.verdict .big.pos{color:var(--good)}
+.verdict .exp{margin-top:12px;font-size:16px;color:var(--ink-text);max-width:56ch;line-height:1.6}
+.verdict .exp b{font-weight:700}
+.verdict .sub{margin-top:10px;font-size:14px;color:var(--ink-dim);max-width:60ch}
+
+.mini-rows{margin-top:20px;border-top:1px solid var(--line-p)}
+.mrow{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line-p);font-size:15px}
+.mrow span{color:var(--ink-dim)}
+.mrow b{font-family:var(--f-display);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ===== paid pitch ========================================= */
+.gate{
+  margin-top:clamp(40px,6vw,64px);border:1px solid var(--line);border-radius:3px;
+  background:var(--ink-2);overflow:hidden;
+}
+.gate-top{padding:clamp(24px,4vw,36px);border-bottom:1px solid var(--line)}
+.gate-top h3{font-size:clamp(24px,3.6vw,34px);letter-spacing:-.015em;margin-top:14px}
+.gate-top p{margin-top:14px;color:var(--text-dim);max-width:var(--readw);font-weight:300}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:1px;background:var(--line)}
+.tool{background:var(--ink-2);padding:24px;display:flex;flex-direction:column;gap:9px}
+.tool .idx{font-family:var(--f-util);font-size:11.5px;letter-spacing:.16em;color:var(--brass)}
+.tool h4{font-size:19.5px;font-weight:700}
+.tool p{font-size:15px;color:var(--text-dim);line-height:1.55;font-weight:300}
+.tool .pv{
+  margin-top:6px;font-family:var(--f-util);font-size:13px;color:var(--text);
+  background:var(--ink-3);border-inline-start:2px solid var(--brass);
+  padding:9px 12px;border-radius:0 2px 2px 0;line-height:1.5;
+}
+
+/* buy ------------------------------------------------------ */
+.buy{
+  display:grid;grid-template-columns:1.25fr .95fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:3px;margin-top:clamp(40px,6vw,64px);
+}
+@media (max-width:760px){.buy{grid-template-columns:1fr}}
+.buy-l,.buy-r{background:var(--ink-2);padding:clamp(24px,4vw,34px)}
+.buy-l h3{font-size:clamp(24px,3.4vw,32px);margin-top:14px;letter-spacing:-.015em}
+.incl{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.incl li{display:flex;gap:11px;font-size:15.5px;color:var(--text-dim);line-height:1.5}
+.incl li::before{content:"—";color:var(--brass);flex-shrink:0}
+.incl li b{color:var(--text);font-weight:600}
+
+.pricetag{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.pricetag .was{font-family:var(--f-display);font-size:24px;color:var(--text-dim);text-decoration:line-through;text-decoration-thickness:1px}
+.pricetag .now{font-family:var(--f-display);font-size:clamp(52px,9vw,74px);font-weight:900;color:var(--brass);letter-spacing:-.03em;line-height:1}
+.pricetag .once{font-family:var(--f-util);font-size:13px;color:var(--text-dim);letter-spacing:.1em}
+.btn{
+  display:block;width:100%;text-align:center;margin-top:22px;
+  background:var(--brass);color:#0B131C;border:0;border-radius:2px;
+  padding:16px 20px;font-family:var(--f-util);font-size:17px;font-weight:700;
+  cursor:pointer;transition:.16s;border-bottom:0;
+}
+.btn:hover{background:#D6AC69}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line-2);font-weight:500;font-size:15px;padding:13px}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass);background:none}
+.buy-r .fine{margin-top:16px;font-size:13px;color:var(--text-dim);line-height:1.55}
+
+/* unlock --------------------------------------------------- */
+.unlock{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.unlock label{font-family:var(--f-util);font-size:13px;color:var(--text-dim);display:block;margin-bottom:8px}
+.unlock-row{display:flex;gap:8px}
+.unlock-row input{
+  flex:1;min-width:0;background:var(--ink);border:1px solid var(--line-2);border-radius:2px;
+  color:var(--text);padding:12px 14px;font-family:var(--f-util);font-size:15px;
+  letter-spacing:.08em;outline:none;
+}
+.unlock-row input:focus{border-color:var(--brass)}
+.unlock-row button{
+  background:var(--ink-3);border:1px solid var(--line-2);color:var(--text);
+  padding:0 20px;border-radius:2px;cursor:pointer;font-family:var(--f-util);font-weight:500;
+}
+.unlock-row button:hover{border-color:var(--brass);color:var(--brass)}
+.unlock-msg{margin-top:10px;font-size:13.5px;min-height:19px}
+.unlock-msg.err{color:var(--bad)}
+.unlock-msg.ok{color:var(--good)}
+
+/* ===== unlocked suite ===================================== */
+.suite{display:none}
+.suite.on{display:block}
+.suite-nav{
+  display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);
+  margin-bottom:0;padding-bottom:0;scrollbar-width:thin;
+}
+.suite-nav button{
+  background:none;border:0;border-bottom:2px solid transparent;
+  padding:14px 16px;white-space:nowrap;cursor:pointer;
+  font-family:var(--f-util);font-size:14.5px;color:var(--text-dim);transition:.15s;
+}
+.suite-nav button:hover{color:var(--text)}
+.suite-nav button[aria-selected="true"]{color:var(--brass);border-bottom-color:var(--brass)}
+.pane{display:none;padding-top:30px}
+.pane.on{display:block}
+.pane h3{font-size:clamp(22px,3.2vw,29px);letter-spacing:-.015em}
+.pane .pane-lede{margin-top:10px;color:var(--text-dim);max-width:var(--readw);font-weight:300;font-size:16px}
+
+.dark-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px 18px;margin-top:24px}
+.dark-fields .field label{color:var(--text-dim)}
+.dark-fields .field .in{background:var(--ink-2);border-color:var(--line-2)}
+.dark-fields .field .in:focus-within{border-color:var(--brass);background:var(--ink-3)}
+.dark-fields .field input{color:var(--text)}
+.dark-fields .field .in span{color:var(--text-dim)}
+
+/* table */
+.tbl-wrap{overflow-x:auto;margin-top:22px;border:1px solid var(--line);border-radius:3px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+th,td{text-align:right;padding:13px 16px;border-bottom:1px solid var(--line)}
+th{
+  font-family:var(--f-util);font-size:12px;letter-spacing:.1em;color:var(--brass);
+  font-weight:500;background:var(--ink-2);position:sticky;top:0;
+}
+td{color:var(--text-dim)}
+td:first-child{color:var(--text);font-weight:600}
+td b{font-family:var(--f-display);color:var(--text);font-weight:700;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+
+.where{
+  margin-top:20px;border:1px solid var(--line-2);border-radius:3px;padding:20px 22px;background:var(--ink-2);
+}
+.where .k{font-family:var(--f-util);font-size:12px;letter-spacing:.14em;color:var(--brass)}
+.where p{margin-top:9px;font-size:16px;line-height:1.6}
+
+/* slider */
+.slider-box{margin-top:26px;border:1px solid var(--line);border-radius:3px;background:var(--ink-2);padding:24px}
+.slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.slider-top .k{font-family:var(--f-util);font-size:12.5px;letter-spacing:.12em;color:var(--text-dim)}
+.slider-top .v{font-family:var(--f-display);font-size:clamp(34px,5.6vw,46px);font-weight:700;color:var(--brass);letter-spacing:-.02em;line-height:1}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:2px;margin:26px 0 8px;
+  background:var(--line-2);outline:none;border-radius:2px;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+  background:var(--brass);border:3px solid var(--ink-2);cursor:grab;box-shadow:0 0 0 1px var(--brass);
+}
+input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;background:var(--brass);
+  border:3px solid var(--ink-2);cursor:grab;box-shadow:0 0 0 1px var(--brass);
+}
+.range-ends{display:flex;justify-content:space-between;font-family:var(--f-util);font-size:12px;color:var(--text-dim)}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:24px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media (max-width:560px){.compare{grid-template-columns:1fr}}
+.cmp{background:var(--ink-2);padding:20px}
+.cmp.now{background:var(--ink)}
+.cmp .k{font-family:var(--f-util);font-size:12px;letter-spacing:.12em;color:var(--text-dim)}
+.cmp .line{font-family:var(--f-display);font-size:26px;font-weight:700;margin-top:8px;font-variant-numeric:tabular-nums}
+.cmp .sub{font-size:14px;color:var(--text-dim);margin-top:6px}
+.cmp.new .line{color:var(--brass)}
+.delta{
+  margin-top:20px;padding:18px 20px;border:1px solid var(--line-2);border-radius:3px;
+  font-size:17px;line-height:1.6;
+}
+.delta b{font-family:var(--f-display);font-weight:700}
+.delta.good{border-color:rgba(94,143,108,.5);background:rgba(94,143,108,.09)}
+.delta.bad{border-color:rgba(168,92,80,.5);background:rgba(168,92,80,.09)}
+
+/* net breakdown */
+.ledger{margin-top:24px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.lrow{display:flex;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:15.5px;background:var(--ink-2)}
+.lrow:last-child{border-bottom:0}
+.lrow span{color:var(--text-dim)}
+.lrow span small{display:block;font-size:12.5px;opacity:.8}
+.lrow b{font-family:var(--f-display);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lrow.minus b{color:var(--bad)}
+.lrow.total{background:var(--ink-3);padding-block:20px}
+.lrow.total span{color:var(--text);font-weight:600;font-size:17px}
+.lrow.total b{font-size:30px;color:var(--brass)}
+
+/* audit verdict */
+.audit-out{margin-top:24px;border:1px solid var(--line-2);border-radius:3px;padding:24px;background:var(--ink-2)}
+.audit-big{font-family:var(--f-display);font-size:clamp(32px,5.4vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.audit-out .k{font-family:var(--f-util);font-size:12px;letter-spacing:.14em;color:var(--text-dim)}
+.audit-out p{margin-top:12px;font-size:16px;line-height:1.6;color:var(--text-dim);max-width:58ch}
+.audit-out p b{color:var(--text)}
+
+/* plan */
+.plan{margin-top:26px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.step{background:var(--ink-2);padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px}
+.step .when{
+  font-family:var(--f-util);font-size:12px;letter-spacing:.1em;color:var(--brass);
+  white-space:nowrap;padding-top:4px;min-width:88px;
+}
+.step h4{font-size:18.5px}
+.step p{margin-top:7px;font-size:15px;color:var(--text-dim);line-height:1.6}
+.step p b{color:var(--text);font-weight:600}
+@media (max-width:560px){.step{grid-template-columns:1fr;gap:8px}}
+
+/* scripts */
+.scripts{display:flex;flex-direction:column;gap:18px;margin-top:26px}
+.script{border:1px solid var(--line);border-radius:3px;background:var(--ink-2);overflow:hidden}
+.script header{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:var(--ink-3);
+}
+.script header h4{font-size:16.5px}
+.copy{
+  background:none;border:1px solid var(--line-2);color:var(--text-dim);
+  padding:6px 13px;border-radius:2px;cursor:pointer;font-family:var(--f-util);font-size:13px;
+}
+.copy:hover{border-color:var(--brass);color:var(--brass)}
+.script pre{
+  margin:0;padding:20px;white-space:pre-wrap;font-family:var(--f-body);
+  font-size:15.5px;line-height:1.75;color:var(--text-dim);
+}
+
+/* report */
+.report{margin-top:26px;background:var(--paper);color:var(--ink-text);border-radius:3px;padding:clamp(24px,4vw,38px)}
+.report h3{color:var(--ink-text)}
+.report .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink-text);padding-bottom:14px}
+.report .rhead .tag{font-family:var(--f-util);font-size:11.5px;letter-spacing:.14em;color:var(--ink-dim)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line-p);margin-top:22px}
+.rcell{background:var(--paper);padding:16px 4px 16px 0}
+.rcell .k{font-family:var(--f-util);font-size:11.5px;letter-spacing:.1em;color:var(--ink-dim)}
+.rcell .v{font-family:var(--f-display);font-size:27px;font-weight:700;margin-top:5px;letter-spacing:-.01em}
+.report ul{margin:22px 0 0;padding:0 20px 0 0;color:var(--ink-dim);font-size:15.5px;line-height:1.8}
+.report ul b{color:var(--ink-text)}
+
+/* faq ------------------------------------------------------ */
+.faq{margin-top:clamp(40px,6vw,60px);border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{
+  cursor:pointer;list-style:none;padding:20px 0;font-size:17.5px;font-weight:600;
+  display:flex;justify-content:space-between;gap:16px;align-items:center;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-display);font-size:22px;color:var(--brass);flex-shrink:0}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:20px;color:var(--text-dim);max-width:var(--readw);font-weight:300}
+
+/* footer --------------------------------------------------- */
+footer{border-top:1px solid var(--line);padding-block:36px 48px;margin-top:clamp(48px,7vw,80px)}
+footer .disc{font-size:13.5px;color:var(--text-dim);max-width:70ch;line-height:1.65}
+footer .sources{margin-top:16px;font-size:12.5px;color:var(--text-dim);line-height:1.8}
+footer .sources b{color:var(--text);font-weight:600;font-family:var(--f-util);font-size:11.5px;letter-spacing:.12em;display:block;margin-bottom:6px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  body{background:#fff;color:#000}
+  .nav,.hero,.gate,.buy,.faq,.suite-nav,.sec-head,footer .sources{display:none!important}
+  .report{background:#fff;padding:0}
+}
+</style>
+
+<div class="app">
+
+<div class="wrap">
+  <nav class="nav">
+    <div class="mark"><b>התעריף</b><span>בדיקת תמחור לעצמאים</span></div>
+    <button class="nav-cta" data-scroll="buy">קבל גישה מלאה</button>
+  </nav>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="wrap hero">
+  <div class="eyebrow">מהדורת 2026 · נתוני מס ומחירוני שוק מעודכנים</div>
+  <h1>המספר שאתה אומר בטלפון <em>לא נבדק מעולם.</em></h1>
+  <p class="lede">
+    אתה יודע כמה אתה גובה. אתה לא יודע כמה אתה <strong>צריך</strong> לגבות כדי להגיע ליעד
+    שאתה עצמך הגדרת — אחרי הוצאות, שעות שלא משולמות, ימי חופש, ביטוח לאומי ומס.
+    התעריף מחשב את זה בשלוש דקות, ואומר לך בדיוק מה הפער.
+  </p>
+
+  <div class="facts">
+    <div class="fact"><b>600,000</b><span>עצמאים בישראל — כ־12% מכוח העבודה</span></div>
+    <div class="fact"><b>75%</b><span>מבעלי העסקים הקטנים עובדים לבד, בלי אף עובד</span></div>
+    <div class="fact"><b><bdi dir="ltr">60–75%</bdi></b><span>בלבד משעות העבודה שלך ניתנות לחיוב בפועל</span></div>
+  </div>
+</header>
+
+<!-- ============ FREE DIAGNOSTIC ============ -->
+<section class="wrap sec" id="diag">
+  <div class="sec-head">
+    <div class="eyebrow">שלב א׳ · חינם, ללא הרשמה</div>
+    <h2>האבחון</h2>
+    <p>שישה מספרים שאתה כבר מכיר. מהם נגזרים מחיר הרצפה שלך, מחיר היעד, והפער בינם לבין מה שאתה גובה היום.</p>
+  </div>
+
+  <div class="instrument" style="margin-top:32px">
+    <div class="inst-head">
+      <h3>אבחון תמחור</h3>
+      <div class="tag">מחושב מקומית · שום נתון לא נשלח לשרת</div>
+    </div>
+
+    <div class="inst-body">
+      <div class="example-note"><i></i> הטופס פתוח עם ערכי דוגמה של מעצב גרפי. שנה אותם למספרים שלך.</div>
+
+      <div class="chips" id="chips" role="group" aria-label="בחירת תחום"></div>
+
+      <div class="fields">
+        <div class="field">
+          <label for="f-income">כמה אתה רוצה שיישאר לך בחודש (לפני מס)</label>
+          <div class="in"><span>₪</span><input type="number" id="f-income" value="12000" min="0" step="500"></div>
+        </div>
+        <div class="field">
+          <label for="f-hours">שעות שאתה מחייב עליהן בחודש</label>
+          <div class="in"><input type="number" id="f-hours" value="80" min="1" step="5"><span>שעות</span></div>
+          <div class="hint">לא שעות עבודה — רק שעות שמישהו משלם עליהן.</div>
+        </div>
+        <div class="field">
+          <label for="f-exp">הוצאות עסק קבועות בחודש</label>
+          <div class="in"><span>₪</span><input type="number" id="f-exp" value="1500" min="0" step="100"></div>
+          <div class="hint">תוכנות, שכירות, רו״ח, ביטוח, פרסום.</div>
+        </div>
+        <div class="field">
+          <label id="lbl-ph" for="f-ph">שעות ממוצע לפרויקט</label>
+          <div class="in"><input type="number" id="f-ph" value="5" min="0.5" step="0.5"><span>שעות</span></div>
+        </div>
+        <div class="field">
+          <label id="lbl-pe" for="f-pe">הוצאות ישירות לפרויקט</label>
+          <div class="in"><span>₪</span><input type="number" id="f-pe" value="100" min="0" step="25"></div>
+        </div>
+        <div class="field">
+          <label for="f-vac">ימי חופשה ומחלה בשנה</label>
+          <div class="in"><input type="number" id="f-vac" value="22" min="0" max="120" step="1"><span>ימים</span></div>
+          <div class="hint">ימים שבהם לא נכנס כסף. הם מתומחרים פנימה.</div>
+        </div>
+        <div class="field">
+          <label for="f-current">כמה אתה גובה היום על פרויקט כזה</label>
+          <div class="in"><span>₪</span><input type="number" id="f-current" value="500" min="0" step="50"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="res-pad">
+        <div class="band-label">
+          <span>סרגל המחיר שלך</span>
+          <span id="band-note">הקו האדום הוא המחיר שאתה גובה היום</span>
+        </div>
+        <div class="band" id="band">
+          <div class="band-track">
+            <div class="z z-under" id="z1"></div>
+            <div class="z z-safe" id="z2"></div>
+            <div class="z z-prime" id="z3"></div>
+          </div>
+        </div>
+        <div class="band-scale"><span>הפסד</span><span>כיסוי היעד</span><span>רווח אמיתי</span></div>
+
+        <div class="prices">
+          <div class="price is-floor">
+            <div class="k">מחיר רצפה</div>
+            <div class="v num" id="p-floor">—</div>
+            <div class="d">מתחת לזה אתה לא מגיע ליעד שהגדרת. זו לא המלצה — זו נקודת האיזון.</div>
+          </div>
+          <div class="price is-target">
+            <div class="k">מחיר יעד</div>
+            <div class="v num" id="p-target">—</div>
+            <div class="d">רצפה + 25% למה שתמיד קורה: סבב תיקונים נוסף, פגישה, חריגת היקף.</div>
+          </div>
+          <div class="price is-prime">
+            <div class="k">מחיר פרימיום</div>
+            <div class="v num" id="p-prime">—</div>
+            <div class="d">המחיר שבו אתה יכול לעבוד עם פחות לקוחות ולתת לכל אחד יותר.</div>
+          </div>
+        </div>
+
+        <div class="verdict">
+          <div class="k">הפער</div>
+          <div class="big num" id="v-big">—</div>
+          <p class="exp" id="v-exp"></p>
+          <p class="sub" id="v-sub"></p>
+
+          <div class="mini-rows">
+            <div class="mrow"><span>תעריף השעה האפקטיבי שלך היום</span><b class="num" id="m-eff">—</b></div>
+            <div class="mrow"><span>תעריף השעה שהיעד שלך דורש</span><b class="num" id="m-req">—</b></div>
+            <div class="mrow"><span>פרויקטים בחודש בקצב הנוכחי</span><b class="num" id="m-proj">—</b></div>
+            <div class="mrow"><span>מחזור חודשי נדרש (הכנסה + הוצאות)</span><b class="num" id="m-rev">—</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PITCH ============ -->
+<section class="wrap sec" style="padding-top:0">
+  <div class="gate">
+    <div class="gate-top">
+      <div class="eyebrow">שלב ב׳ · הגישה המלאה</div>
+      <h3>המספר הזה הוא ההתחלה. עכשיו צריך להחליט מה עושים איתו.</h3>
+      <p>
+        האבחון אומר לך מה המחיר צריך להיות. הוא לא אומר לך מה השוק גובה, כמה באמת נשאר לך
+        אחרי ביטוח לאומי ומס, איזה לקוח מפסיד לך כסף כרגע, ואיך מעלים מחיר ללקוח קיים
+        בלי לאבד אותו. שבעת הכלים האלה עושים בדיוק את זה.
+      </p>
+    </div>
+
+    <div class="tools">
+      <div class="tool">
+        <div class="idx">כלי 01</div>
+        <h4>מחירון השוק 2026</h4>
+        <p>טווחי המחירים בפועל בישראל בתחום שלך — נאספו ממחירונים ענפיים פומביים ומעודכנים לשנת 2026, עם ציון המקור.</p>
+        <div class="pv">עריכת וידאו: ריל 150–600 ₪ · סרטון תדמית 800–4,000 ₪ · 3+ שנות ותק 1,500–5,000 ₪</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 02</div>
+        <h4>סימולטור "מה אם"</h4>
+        <p>גרור את המחיר וראה בזמן אמת כמה לקוחות אתה צריך, וכמה יישאר לך. פחות לקוחות במחיר גבוה יותר כמעט תמיד מנצח.</p>
+        <div class="pv">10 לקוחות × 500 ₪ = 5,000 ₪ &nbsp;·&nbsp; 8 לקוחות × 650 ₪ = 5,200 ₪</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 03</div>
+        <h4>כמה באמת נשאר לך</h4>
+        <p>מנוע מלא: מע״מ 18%, ביטוח לאומי 7.7%/18%, מדרגות מס הכנסה 2026, נקודות זיכוי ופנסיית חובה לעצמאים.</p>
+        <div class="pv">מחזור 240,000 ₪ → נטו בכיס אחרי הכול. המספר הזה בדרך כלל מפתיע.</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 04</div>
+        <h4>גלאי הלקוח המפסיד</h4>
+        <p>הזן לקוח אחד אמיתי — שעות, סבבי תיקונים, נסיעות, זמן רדיפה אחרי תשלום. תקבל את תעריף השעה האמיתי מולו.</p>
+        <div class="pv">"הלקוח הכי גדול שלי" מתגלה פעמים רבות כתעריף של 78 ₪ לשעה.</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 05</div>
+        <h4>תוכנית מעבר ב־90 יום</h4>
+        <p>לא "תעלה מחיר". תוכנית מדורגת: על מי מעלים ראשון, בכמה, מתי מודיעים, ומה עושים אם לקוח עוזב.</p>
+        <div class="pv">נבנית אוטומטית לפי גודל הפער שלך — מעבר של 12% שונה ממעבר של 60%.</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 06</div>
+        <h4>מה בדיוק לכתוב</h4>
+        <p>ארבעה נוסחים מוכנים בעברית, ממולאים במספרים שלך: הודעה ללקוח קיים, הצעה ללקוח חדש, ותשובה ל"זה יקר לי".</p>
+        <div class="pv">מוכן להעתקה. בלי התנצלויות, בלי הסברים מיותרים.</div>
+      </div>
+      <div class="tool">
+        <div class="idx">כלי 07</div>
+        <h4>דוח התמחור שלך</h4>
+        <p>סיכום מודפס של כל המספרים וההחלטות — לשמירה, להדפסה, או לשליחה לרואה החשבון שלך.</p>
+        <div class="pv">עמוד אחד. כל המספרים שהעסק שלך צריך כדי לתמחר נכון.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUY -->
+  <div class="buy" id="buy">
+    <div class="buy-l">
+      <div class="eyebrow">גישה מלאה</div>
+      <h3>תשלום אחד. גישה קבועה. בלי מנוי.</h3>
+      <ul class="incl">
+        <li><b>שבעת הכלים</b> — מחירון שוק, סימולטור, מנוע נטו, גלאי לקוח, תוכנית 90 יום, נוסחים, דוח</li>
+        <li><b>עדכון שנתי</b> — נתוני המס והמחירונים מתעדכנים; הגישה שלך נשארת</li>
+        <li><b>עובד בדפדפן</b> — בלי התקנה, בלי אקסל, גם מהנייד</li>
+        <li><b>הנתונים שלך נשארים אצלך</b> — כל החישובים רצים במכשיר שלך בלבד</li>
+      </ul>
+    </div>
+    <div class="buy-r">
+      <div class="pricetag">
+        <span class="now num">149 ₪</span>
+        <span class="was num">249 ₪</span>
+      </div>
+      <div class="once">תשלום חד־פעמי · מחיר השקה</div>
+      <button class="btn" id="btn-buy">לרכישת גישה</button>
+      <p class="fine">
+        לאחר התשלום תקבל קוד גישה. הכנס אותו כאן והכלים ייפתחו מיד באותו עמוד.
+        המוצר דיגיטלי ונפתח מיידית, ולכן אין החזר כספי לאחר קבלת הקוד.
+      </p>
+
+      <div class="unlock">
+        <label for="code">כבר רכשת? הכנס קוד גישה</label>
+        <div class="unlock-row">
+          <input id="code" type="text" placeholder="Taharif-••••" autocomplete="off" spellcheck="false">
+          <button id="btn-unlock">פתח</button>
+        </div>
+        <div class="unlock-msg" id="unlock-msg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUITE ============ -->
+<section class="wrap sec suite" id="suite" style="padding-top:0">
+  <div class="sec-head">
+    <div class="eyebrow">הגישה נפתחה</div>
+    <h2>הכלים</h2>
+    <p>כל הכלים משתמשים במספרים שהזנת באבחון למעלה. שנה אותם שם — והכול כאן יתעדכן.</p>
+  </div>
+
+  <div class="suite-nav" role="tablist" style="margin-top:28px">
+    <button role="tab" aria-selected="true"  data-pane="t1">מחירון השוק</button>
+    <button role="tab" aria-selected="false" data-pane="t2">סימולטור מה אם</button>
+    <button role="tab" aria-selected="false" data-pane="t3">כמה נשאר לך</button>
+    <button role="tab" aria-selected="false" data-pane="t4">גלאי לקוח מפסיד</button>
+    <button role="tab" aria-selected="false" data-pane="t5">תוכנית 90 יום</button>
+    <button role="tab" aria-selected="false" data-pane="t6">מה לכתוב</button>
+    <button role="tab" aria-selected="false" data-pane="t7">הדוח שלך</button>
+  </div>
+
+  <!-- T1 -->
+  <div class="pane on" id="t1">
+    <h3>מחירון השוק — <span id="t1-prof"></span></h3>
+    <p class="pane-lede">טווחי מחירים פומביים בישראל, מעודכנים ל־2026. אלה לא המחירים שאתה חייב לגבות — אלה המחירים שהלקוח שלך כבר ראה במקום אחר.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>שירות</th><th>טווח מקובל</th><th>הערה</th></tr></thead>
+        <tbody id="t1-body"></tbody>
+      </table>
+    </div>
+    <div class="where">
+      <div class="k">איפה אתה יושב</div>
+      <p id="t1-where"></p>
+    </div>
+  </div>
+
+  <!-- T2 -->
+  <div class="pane" id="t2">
+    <h3>סימולטור "מה אם"</h3>
+    <p class="pane-lede">השאלה הנכונה היא לא "כמה אני יכול לבקש" אלא "כמה לקוחות אני צריך במחיר הזה". גרור, ותראה.</p>
+    <div class="slider-box">
+      <div class="slider-top">
+        <div class="k">מחיר לפרויקט</div>
+        <div class="v num" id="s-price">—</div>
+      </div>
+      <input type="range" id="s-range" min="0" max="100" value="30" aria-label="מחיר לפרויקט">
+      <div class="range-ends"><span class="num" id="s-min">—</span><span class="num" id="s-max">—</span></div>
+    </div>
+    <div class="compare">
+      <div class="cmp now">
+        <div class="k">המצב היום</div>
+        <div class="line num" id="c-now">—</div>
+        <div class="sub" id="c-now-sub"></div>
+      </div>
+      <div class="cmp new">
+        <div class="k">במחיר שבחרת</div>
+        <div class="line num" id="c-new">—</div>
+        <div class="sub" id="c-new-sub"></div>
+      </div>
+    </div>
+    <div class="delta" id="s-delta"></div>
+  </div>
+
+  <!-- T3 -->
+  <div class="pane" id="t3">
+    <h3>כמה באמת נשאר לך</h3>
+    <p class="pane-lede">מחזור זה לא הכנסה. זה החישוב המלא לפי נתוני 2026: ביטוח לאומי לעצמאים, מדרגות מס הכנסה, נקודות זיכוי ופנסיית חובה.</p>
+    <div class="dark-fields">
+      <div class="field">
+        <label for="n-rev">מחזור שנתי (לפני מע״מ)</label>
+        <div class="in"><span>₪</span><input type="number" id="n-rev" value="180000" min="0" step="5000"></div>
+      </div>
+      <div class="field">
+        <label for="n-exp">הוצאות מוכרות בשנה</label>
+        <div class="in"><span>₪</span><input type="number" id="n-exp" value="30000" min="0" step="1000"></div>
+      </div>
+      <div class="field">
+        <label for="n-pts">נקודות זיכוי</label>
+        <div class="in"><input type="number" id="n-pts" value="2.25" min="0" max="10" step="0.25"><span>נק׳</span></div>
+        <div class="hint">2.25 לגבר תושב · 2.75 לאישה תושבת</div>
+      </div>
+    </div>
+    <div class="ledger" id="n-ledger"></div>
+    <p class="pane-lede" style="margin-top:16px;font-size:14px">
+      אומדן בלבד, לצורך החלטת תמחור. אינו תחשיב מס ואינו מחליף ייעוץ של רואה חשבון או יועץ מס.
+    </p>
+  </div>
+
+  <!-- T4 -->
+  <div class="pane" id="t4">
+    <h3>גלאי הלקוח המפסיד</h3>
+    <p class="pane-lede">קח לקוח אחד אמיתי — עדיף את זה שאתה הכי גאה בו — והזן את מה שבאמת קרה. לא את מה שסוכם.</p>
+    <div class="dark-fields">
+      <div class="field">
+        <label for="a-price">מה גבית ממנו (לפרויקט)</label>
+        <div class="in"><span>₪</span><input type="number" id="a-price" value="500" min="0" step="50"></div>
+      </div>
+      <div class="field">
+        <label for="a-work">שעות עבודה בפועל</label>
+        <div class="in"><input type="number" id="a-work" value="5" min="0" step="0.5"><span>שעות</span></div>
+      </div>
+      <div class="field">
+        <label for="a-rev">סבבי תיקונים — שעות</label>
+        <div class="in"><input type="number" id="a-rev" value="2" min="0" step="0.5"><span>שעות</span></div>
+      </div>
+      <div class="field">
+        <label for="a-meet">פגישות, שיחות והתכתבויות</label>
+        <div class="in"><input type="number" id="a-meet" value="1.5" min="0" step="0.5"><span>שעות</span></div>
+      </div>
+      <div class="field">
+        <label for="a-travel">נסיעות — שעות</label>
+        <div class="in"><input type="number" id="a-travel" value="1" min="0" step="0.5"><span>שעות</span></div>
+      </div>
+      <div class="field">
+        <label for="a-chase">רדיפה אחרי התשלום</label>
+        <div class="in"><input type="number" id="a-chase" value="0.5" min="0" step="0.5"><span>שעות</span></div>
+      </div>
+      <div class="field">
+        <label for="a-cost">הוצאות ישירות עליו</label>
+        <div class="in"><span>₪</span><input type="number" id="a-cost" value="100" min="0" step="25"></div>
+      </div>
+    </div>
+    <div class="audit-out">
+      <div class="k">תעריף השעה האמיתי מול הלקוח הזה</div>
+      <div class="audit-big num" id="a-rate">—</div>
+      <p id="a-say"></p>
+    </div>
+  </div>
+
+  <!-- T5 -->
+  <div class="pane" id="t5">
+    <h3>תוכנית המעבר — 90 יום</h3>
+    <p class="pane-lede" id="t5-lede"></p>
+    <div class="plan" id="t5-plan"></div>
+  </div>
+
+  <!-- T6 -->
+  <div class="pane" id="t6">
+    <h3>מה בדיוק לכתוב</h3>
+    <p class="pane-lede">ארבעה נוסחים, ממולאים במספרים שלך. קצרים בכוונה — הסבר ארוך נשמע כמו התנצלות.</p>
+    <div class="scripts" id="t6-scripts"></div>
+  </div>
+
+  <!-- T7 -->
+  <div class="pane" id="t7">
+    <h3>הדוח שלך</h3>
+    <p class="pane-lede">סיכום כל המספרים. אפשר להדפיס או לשמור כ־PDF דרך תיבת ההדפסה של הדפדפן.</p>
+    <div class="report" id="report"></div>
+    <button class="btn ghost" id="btn-print" style="max-width:260px;margin-top:20px">הדפס / שמור כ־PDF</button>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="wrap sec" style="padding-top:0">
+  <div class="sec-head">
+    <div class="eyebrow">שאלות</div>
+    <h2>לפני שאתה קונה</h2>
+  </div>
+  <div class="faq">
+    <details open><summary>זה עוד מחשבון של עלות פלוס אחוז?</summary>
+      <p>לא. מחשבון כזה שואל "כמה עלה לך" ומוסיף אחוז. התעריף עובד הפוך: הוא מתחיל מהיעד שאתה הגדרת לעצמך, מחלק אותו בשעות שאתה באמת מחייב עליהן, ומגיע למחיר שחייב להתקיים כדי שהיעד יקרה. זה הופך את התמחור מניחוש להחלטה.</p>
+    </details>
+    <details><summary>אני לא עובד לפי שעה, אני מתמחר לפי פרויקט.</summary>
+      <p>מצוין — גם התעריף. השעה היא רק יחידת החישוב הפנימית; כל הפלטים הם מחירים לפרויקט, לטיפול או לאירוע, לפי התחום שבחרת. אתה לא צריך להציג ללקוח שום תעריף שעתי.</p>
+    </details>
+    <details><summary>המספרים שאני מזין נשמרים אצלכם?</summary>
+      <p>לא. כל החישובים רצים בדפדפן שלך. שום נתון פיננסי לא נשלח לשום שרת, ואין כאן חשבון משתמש.</p>
+    </details>
+    <details><summary>אתם מבטיחים שארוויח יותר?</summary>
+      <p>לא, ולא נבטיח. התעריף לא מייצר לקוחות ולא מוכר במקומך. הוא נותן לך את המספרים שצריך כדי לקבל החלטת תמחור מבוססת במקום להעריך באוויר. מה שתעשה עם ההחלטה — זה עליך.</p>
+    </details>
+    <details><summary>למה תשלום חד־פעמי ולא מנוי?</summary>
+      <p>כי תמחור זו החלטה שמקבלים פעם בשנה, לא כלי שפותחים כל יום. מנוי היה מכריח אותנו להעמיס פיצ׳רים שלא צריך. שילמת פעם אחת — הגישה שלך.</p>
+    </details>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="disc">
+    התעריף הוא כלי עזר להחלטת תמחור עסקית. אין בו ייעוץ מס, ייעוץ פנסיוני, ייעוץ משפטי או ייעוץ
+    השקעות, והוא אינו מחליף רואה חשבון או יועץ מס. שיעורי המס, דמי ביטוח לאומי ותקרות ההפקדה
+    מוצגים לפי הפרסומים לשנת 2026 ועשויים להתעדכן. האחריות על כל החלטת תמחור היא של בעל העסק.
+  </p>
+  <div class="sources">
+    <b>מקורות הנתונים</b>
+    ביטוח לאומי לעצמאים 2026 · מדרגות מס הכנסה 2026 ונקודת זיכוי 242 ₪ · פנסיית חובה לעצמאים 2026
+    (שכר ממוצע 13,769 ₪) · מע״מ 18% ותקרת עוסק פטור 122,833 ₪ · סקר הפיקוח על הבנקים, בנק ישראל 2025
+    · מחירוני ענף פומביים לצילום, עיצוב, בניית אתרים, סושיאל, וידאו, ביוטי, אימון וניקיון.
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ==== CONFIG — עדכן כאן ================================== */
+var PAYMENT_URL = "https://gumroad.com/checkout?product=ajtwic&quantity=1";              /* הדבק כאן את קישור התשלום */
+var ACCESS_CODE = "TAHARIF-2026";   /* הקוד שנשלח לרוכשים */
+/* ========================================================= */
+
+document.documentElement.setAttribute("dir","rtl");
+document.documentElement.setAttribute("lang","he");
+
+var $ = function(id){ return document.getElementById(id); };
+var ils = function(n){
+  if(!isFinite(n)) return "—";
+  return "₪" + Math.round(n).toLocaleString("he-IL");
+};
+var ils0 = function(n){ return Math.round(n).toLocaleString("he-IL"); };
+
+/* ---------- professions ---------------------------------- */
+var PROFS = [
+  { id:"design", name:"עיצוב גרפי", unit:"פרויקט",
+    ph:"שעות ממוצע לפרויקט", pe:"הוצאות ישירות לפרויקט (הדפסות, פונטים, תמונות)",
+    bench:[
+      ["שעת עבודה של מעצב","150–300 ₪","מנוסים מגיעים ל־600 ₪ לשעה"],
+      ["לוגו מקורי","500–1,500 ₪","לוגו מבוסס תבנית מתחיל ב־100 ₪"],
+      ["עיצוב דף נחיתה","500–1,000+ ₪","לא כולל בנייה"],
+      ["פוסט לרשתות","150–500 ₪","עבודת תבנית זולה משמעותית"],
+      ["פלייר / באנר","150–500 ₪","באנר בודד 150–400 ₪"],
+      ["עיצוב אתר","3,000+ ₪","עולה עם מספר המסכים"]
+    ]},
+  { id:"photo", name:"צילום", unit:"אירוע",
+    ph:"שעות לאירוע (צילום + עריכה + נסיעה)", pe:"הוצאות ישירות לאירוע (נסיעה, עוזר, גיבוי)",
+    bench:[
+      ["צילום סטילס בלבד","1,200–1,800 ₪","אירוע קטן / תחילת דרך"],
+      ["סטילס + וידאו בסיסי","2,500–3,000 ₪","הטווח הנפוץ ביותר"],
+      ["חבילה מלאה","5,000–15,000 ₪","צלם ותיק, מרכז הארץ, עונת שיא"],
+      ["תוספת רחפן","1,500–2,000 ₪","נמכר כתוספת, לא כלול"],
+      ["אלבום דיגיטלי","700–1,200 ₪",""],
+      ["הגדלות","100–400 ₪","ליחידה"]
+    ]},
+  { id:"web", name:"בניית אתרים", unit:"פרויקט",
+    ph:"שעות ממוצע לאתר", pe:"הוצאות ישירות (תבנית, תוספים, אחסון ראשוני)",
+    bench:[
+      ["אתר תדמית","2,000–11,000 ₪","מתחת ל־5,000 ₪ — לרוב פשרה על איכות"],
+      ["חנות אונליין","5,000–10,000+ ₪","בנייה מותאמת מתחילה ב־10,000 ₪"],
+      ["בלוג / אתר תוכן","1,000–5,000 ₪",""],
+      ["דף נחיתה","500–1,000+ ₪","עיצוב בלבד; בנייה בנפרד"],
+      ["אחסון שנתי","עד 2,400 ₪","עלות שכדאי לגלגל ללקוח"]
+    ]},
+  { id:"social", name:"ניהול סושיאל", unit:"לקוח חודשי",
+    ph:"שעות בחודש ללקוח אחד", pe:"הוצאות ישירות ללקוח (עיצוב, כלים, צילום)",
+    bench:[
+      ["חבילה בסיסית","1,500–3,000 ₪ לחודש","8–12 פוסטים + ניהול קהילה"],
+      ["חבילה מקיפה","3,000–5,000 ₪ לחודש","20+ פוסטים, סטוריז, ריאלז, דוחות"],
+      ["רמת סוכנות","4,500–7,000 ₪ לחודש","3–5 פלטפורמות"],
+      ["פרילנסר עצמאי","800–3,000 ₪ לחודש","הטווח שבו רוב הפרילנסרים תקועים"],
+      ["ניהול קמפיינים ממומנים","1,500–10,000 ₪ לחודש","נגבה בנפרד מתקציב המדיה"]
+    ]},
+  { id:"video", name:"עריכת וידאו", unit:"סרטון",
+    ph:"שעות עריכה לסרטון", pe:"הוצאות ישירות (מוזיקה, פוטג׳, אחסון)",
+    bench:[
+      ["ריל / שורט 15–90 שניות","150–600 ₪",""],
+      ["סרטון תדמית 1–3 דקות","800–4,000 ₪",""],
+      ["יוטיוב / פודקאסט 5–20 דקות","400–2,000 ₪",""],
+      ["עורך מתחיל (עד שנה)","200–500 ₪ לסרטון",""],
+      ["עורך 1–3 שנות ותק","500–1,500 ₪ לפרויקט",""],
+      ["עורך 3+ שנות ותק","1,500–5,000 ₪ לפרויקט",""]
+    ]},
+  { id:"beauty", name:"ביוטי וציפורניים", unit:"טיפול",
+    ph:"שעות לטיפול (כולל הכנה וניקיון)", pe:"עלות חומרים לטיפול",
+    bench:[
+      ["מניקור בסיסי","50–120 ₪",""],
+      ["לק ג׳ל","100–200 ₪","הנחה על ציפורניים טבעיות"],
+      ["בניית ציפורניים","250–800 ₪","משך: שעה עד ארבע שעות"],
+      ["מילוי","120–400 ₪",""],
+      ["עיצוב אקסטרים","600–2,000 ₪",""],
+      ["הסרה","40–100 ₪","כמעט תמיד מתומחר בחסר"]
+    ]},
+  { id:"trainer", name:"אימון אישי", unit:"אימון",
+    ph:"שעות לאימון (כולל בנייה ונסיעה)", pe:"הוצאות ישירות (מקום, ציוד, נסיעה)",
+    bench:[
+      ["אימון בחדר כושר","150–250 ₪",""],
+      ["אימון בבית הלקוח","200–400 ₪","הנסיעה כמעט אף פעם לא מתומחרת"],
+      ["אימון זוגי","200–400 ₪",""],
+      ["חבילת 10 אימונים","1,700 ₪","170 ₪ לאימון בפועל"],
+      ["חבילת 10 בבית","2,300 ₪","230 ₪ לאימון בפועל"]
+    ]},
+  { id:"clean", name:"ניקיון", unit:"עבודה",
+    ph:"שעות לעבודה", pe:"חומרים וציוד לעבודה",
+    bench:[
+      ["שעת ניקיון","60–140 ₪","ממוצע כ־100 ₪"],
+      ["ניקיון חד־פעמי עד 100 מ״ר","700–1,400 ₪",""],
+      ["משרד עד 100 מ״ר, פעמיים בשבוע","800–1,800 ₪ לחודש",""],
+      ["משרד עד 100 מ״ר, 5 פעמים בשבוע","1,500–3,000 ₪ לחודש",""],
+      ["ניקיון אחרי שיפוץ","2,000–3,500 ₪",""]
+    ]},
+  { id:"other", name:"אחר / פרילנס", unit:"פרויקט",
+    ph:"שעות ממוצע לפרויקט", pe:"הוצאות ישירות לפרויקט",
+    bench:[
+      ["אין מחירון ענפי פומבי","—","בתחומים ללא מחירון מפורסם, מחיר הרצפה שלך הוא נקודת הייחוס האמיתית"],
+      ["שיטת עבודה מומלצת","—","בקש משלושה קולגות בתחום טווח, לא מספר; ממוצע של שלושה טווחים אמין יותר מכל מחירון"]
+    ]}
+];
+
+var state = { prof: PROFS[0] };
+
+/* ---------- core math ------------------------------------ */
+var WORKDAYS = 264; /* 22 ימי עבודה × 12 */
+
+function readInputs(){
+  var v = function(id,d){ var x = parseFloat($(id).value); return isFinite(x) ? x : d; };
+  var s = {
+    income:  Math.max(0, v("f-income",12000)),
+    hours:   Math.max(1, v("f-hours",80)),
+    exp:     Math.max(0, v("f-exp",1500)),
+    ph:      Math.max(0.25, v("f-ph",5)),
+    pe:      Math.max(0, v("f-pe",100)),
+    vac:     Math.min(150, Math.max(0, v("f-vac",22))),
+    current: Math.max(0, v("f-current",500))
+  };
+  s.revNeeded    = s.income + s.exp;
+  s.vacFactor    = WORKDAYS / Math.max(1, (WORKDAYS - s.vac));
+  s.effHours     = s.hours / s.vacFactor;          /* שעות שנותרו בפועל אחרי חופשות */
+  s.reqHourly    = s.revNeeded / s.effHours;
+  s.floor        = s.reqHourly * s.ph + s.pe;
+  s.target       = s.floor * 1.25;
+  s.premium      = s.floor * 1.6;
+  s.projPerMonth = s.hours / s.ph;
+  s.currentEffHr = (s.current - s.pe) / s.ph;
+  s.gapPerProj   = s.target - s.current;
+  s.gapPerMonth  = s.gapPerProj * s.projPerMonth;
+  s.currentProfit= (s.current - s.pe) * s.projPerMonth - s.exp;
+  return s;
+}
+
+/* ---------- band ruler ----------------------------------- */
+function drawBand(s){
+  var band = $("band");
+  Array.prototype.slice.call(band.querySelectorAll(".tick,.tick-txt,.pin")).forEach(function(el){ el.remove(); });
+
+  var lo = 0;
+  var hi = Math.max(s.premium * 1.28, s.current * 1.12, s.floor * 1.5);
+  var pct = function(x){ return Math.max(0, Math.min(100, ((x - lo) / (hi - lo)) * 100)); };
+
+  var pFloor = pct(s.floor), pTarget = pct(s.target), pPrime = pct(s.premium);
+  $("z1").style.width = pFloor + "%";
+  $("z2").style.width = Math.max(0, pTarget - pFloor) + "%";
+  $("z3").style.width = Math.max(0, 100 - pTarget) + "%";
+
+  [[pFloor,"רצפה " + ils(s.floor),true],
+   [pTarget,"יעד " + ils(s.target),true],
+   [pPrime,"פרימיום " + ils(s.premium),false]].forEach(function(t){
+    var k = document.createElement("div");
+    k.className = "tick" + (t[2] ? " major" : "");
+    k.style.insetInlineStart = t[0] + "%";
+    band.appendChild(k);
+    var lab = document.createElement("div");
+    lab.className = "tick-txt";
+    lab.style.insetInlineStart = t[0] + "%";
+    lab.textContent = t[1];
+    band.appendChild(lab);
+  });
+
+  var pin = document.createElement("div");
+  pin.className = "pin";
+  pin.style.insetInlineStart = pct(s.current) + "%";
+  pin.innerHTML = '<b>' + ils(s.current) + '</b><i></i>';
+  band.appendChild(pin);
+}
+
+/* ---------- render diagnostic ---------------------------- */
+function renderDiag(){
+  var s = readInputs();
+  state.s = s;
+
+  $("p-floor").textContent  = ils(s.floor);
+  $("p-target").textContent = ils(s.target);
+  $("p-prime").textContent  = ils(s.premium);
+
+  $("m-eff").textContent  = ils(s.currentEffHr) + " לשעה";
+  $("m-req").textContent  = ils(s.reqHourly) + " לשעה";
+  $("m-proj").textContent = (Math.round(s.projPerMonth * 10) / 10).toLocaleString("he-IL");
+  $("m-rev").textContent  = ils(s.revNeeded);
+
+  var big = $("v-big"), exp = $("v-exp"), sub = $("v-sub");
+  var u = state.prof.unit;
+
+  if (s.current >= s.target){
+    big.className = "big num pos";
+    big.textContent = "אתה מעל היעד";
+    exp.innerHTML = "במחיר של <b>" + ils(s.current) + "</b> ל" + u + " אתה עובר את מחיר היעד שלך (" +
+      ils(s.target) + "). ברמת התמחור, העסק שלך תקין.";
+    sub.textContent = "השאלה הבאה היא לא כמה לגבות אלא כמה " + u + "ים אתה מצליח למכור בחודש — ושם נמצא הפער האמיתי שלך.";
+  } else if (s.current >= s.floor){
+    big.className = "big num";
+    big.textContent = ils(s.gapPerProj) + " ל" + u;
+    exp.innerHTML = "אתה מעל מחיר הרצפה אבל מתחת למחיר היעד. אתה מגיע ליעד — כל עוד שום דבר לא משתבש. " +
+      "כל סבב תיקונים נוסף, כל פגישה שלא תוכננה, כל לקוח שמשלם באיחור — יוצא מהכיס שלך.";
+    sub.textContent = "פער חודשי מצטבר: " + ils(s.gapPerMonth) + " על פני כ־" +
+      (Math.round(s.projPerMonth * 10) / 10) + " " + u + "ים בחודש.";
+  } else {
+    big.className = "big num neg";
+    big.textContent = "חסרים " + ils(Math.abs(s.gapPerMonth)) + " בחודש";
+    exp.innerHTML = "אתה גובה <b>" + ils(s.current) + "</b> ל" + u + ". היעד שהגדרת דורש <b>" +
+      ils(s.target) + "</b>. הפער הוא <b>" + ils(s.gapPerProj) + "</b> ל" + u +
+      ", ובקצב של " + (Math.round(s.projPerMonth * 10) / 10) + " ל" + u + "ים בחודש — <b>" +
+      ils(Math.abs(s.gapPerMonth)) + "</b> בחודש.";
+    sub.textContent = "זה לא אומר שהעסק מפסיד. זה אומר שהיעד שאתה עצמך הגדרת לא יכול להתקיים במחיר הזה, " +
+      "בלי להוסיף שעות שכבר אין לך.";
+  }
+
+  drawBand(s);
+  if (unlocked) renderSuite();
+}
+
+/* ---------- chips ---------------------------------------- */
+(function buildChips(){
+  var c = $("chips");
+  PROFS.forEach(function(p, i){
+    var b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.textContent = p.name;
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function(){
+      state.prof = p;
+      Array.prototype.slice.call(c.children).forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      $("lbl-ph").textContent = p.ph;
+      $("lbl-pe").textContent = p.pe;
+      renderDiag();
+    });
+    c.appendChild(b);
+  });
+})();
+
+["f-income","f-hours","f-exp","f-ph","f-pe","f-vac","f-current"].forEach(function(id){
+  $(id).addEventListener("input", renderDiag);
+});
+
+/* ---------- unlock --------------------------------------- */
+var unlocked = false;
+function store(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+function doUnlock(silent){
+  unlocked = true;
+  $("suite").classList.add("on");
+  renderSuite();
+  if (!silent){
+    $("unlock-msg").className = "unlock-msg ok";
+    $("unlock-msg").textContent = "הגישה נפתחה. הכלים מופיעים מתחת.";
+    setTimeout(function(){
+      $("suite").scrollIntoView({ behavior:"smooth", block:"start" });
+    }, 220);
+  }
+}
+$("btn-unlock").addEventListener("click", function(){
+  var val = ($("code").value || "").trim().toUpperCase();
+  if (val === ACCESS_CODE.toUpperCase()){
+    store("taarif_unlocked","1");
+    doUnlock(false);
+  } else {
+    $("unlock-msg").className = "unlock-msg err";
+    $("unlock-msg").textContent = "הקוד לא מזוהה. בדוק שהעתקת אותו במלואו מהודעת הרכישה.";
+  }
+});
+$("code").addEventListener("keydown", function(e){ if (e.key === "Enter") $("btn-unlock").click(); });
+
+$("btn-buy").addEventListener("click", function(){
+  if (PAYMENT_URL){ window.open(PAYMENT_URL, "_blank", "noopener"); }
+  else {
+    $("unlock-msg").className = "unlock-msg err";
+    $("unlock-msg").textContent = "קישור התשלום עדיין לא הוגדר בקובץ (PAYMENT_URL).";
+  }
+});
+document.querySelectorAll("[data-scroll]").forEach(function(b){
+  b.addEventListener("click", function(){
+    var t = $(b.getAttribute("data-scroll"));
+    if (t) t.scrollIntoView({ behavior:"smooth", block:"center" });
+  });
+});
+
+/* ---------- suite nav ------------------------------------ */
+document.querySelectorAll(".suite-nav button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll(".suite-nav button").forEach(function(x){ x.setAttribute("aria-selected","false"); });
+    document.querySelectorAll(".pane").forEach(function(x){ x.classList.remove("on"); });
+    b.setAttribute("aria-selected","true");
+    $(b.getAttribute("data-pane")).classList.add("on");
+  });
+});
+
+/* ---------- T3 tax engine (2026) ------------------------- */
+var TAX = {
+  ptValue: 242 * 12,                      /* נקודת זיכוי שנתית */
+  brackets: [                             /* [תקרה שנתית, שיעור] */
+    [ 84120, 0.10], [120720, 0.14], [228000, 0.20],
+    [301200, 0.31], [560280, 0.35], [721560, 0.47],
+    [Infinity, 0.50]                      /* 47% + 3% מס יסף */
+  ],
+  niLow: 0.077, niHigh: 0.18,
+  niStep: 7703 * 12,  niCap: 51910 * 12,
+  penLow: 0.0445, penHigh: 0.1255,
+  penHalf: 82614, penFull: 165228
+};
+function incomeTax(taxable, pts){
+  var t = 0, prev = 0;
+  for (var i = 0; i < TAX.brackets.length; i++){
+    var cap = TAX.brackets[i][0], rate = TAX.brackets[i][1];
+    if (taxable > prev){ t += (Math.min(taxable, cap) - prev) * rate; prev = cap; }
+    else break;
+  }
+  return Math.max(0, t - pts * TAX.ptValue);
+}
+function nationalIns(taxable){
+  var low = Math.min(taxable, TAX.niStep);
+  var high = Math.max(0, Math.min(taxable, TAX.niCap) - TAX.niStep);
+  return low * TAX.niLow + high * TAX.niHigh;
+}
+function pension(taxable){
+  var a = Math.min(taxable, TAX.penHalf);
+  var b = Math.max(0, Math.min(taxable, TAX.penFull) - TAX.penHalf);
+  return a * TAX.penLow + b * TAX.penHigh;
+}
+function renderNet(){
+  var rev = Math.max(0, parseFloat($("n-rev").value) || 0);
+  var exp = Math.max(0, parseFloat($("n-exp").value) || 0);
+  var pts = Math.max(0, parseFloat($("n-pts").value) || 0);
+  var taxable = Math.max(0, rev - exp);
+  var ni  = nationalIns(taxable);
+  var tax = incomeTax(Math.max(0, taxable - ni * 0.52), pts);  /* 52% מדמי ב״ל מוכרים בניכוי */
+  var pen = pension(taxable);
+  var net = taxable - ni - tax;
+  var rows = [
+    ["מחזור שנתי (לפני מע״מ)", rev, "", ""],
+    ["הוצאות מוכרות", -exp, "minus", ""],
+    ["הכנסה חייבת", taxable, "", ""],
+    ["דמי ביטוח לאומי ובריאות", -ni, "minus", "7.7% עד 7,703 ₪ בחודש · 18% מעל, עד תקרה"],
+    ["מס הכנסה", -tax, "minus", "אחרי " + pts + " נקודות זיכוי (242 ₪ לחודש לנקודה)"],
+    ["נשאר לך בשנה", net, "total", ""],
+    ["נשאר לך בחודש", net / 12, "total", ""],
+    ["פנסיית חובה שעליך להפקיד", -pen, "minus", "4.45% עד 82,614 ₪ · 12.55% עד 165,228 ₪ — חיסכון שלך, לא הוצאה אבודה"]
+  ];
+  $("n-ledger").innerHTML = rows.map(function(r){
+    var cls = "lrow" + (r[2] ? " " + r[2] : "");
+    var sub = r[3] ? "<small>" + r[3] + "</small>" : "";
+    return '<div class="' + cls + '"><span>' + r[0] + sub + '</span><b>' + ils(r[1]) + '</b></div>';
+  }).join("");
+}
+["n-rev","n-exp","n-pts"].forEach(function(id){ $(id).addEventListener("input", renderNet); });
+
+/* ---------- T4 audit ------------------------------------- */
+function renderAudit(){
+  var g = function(id){ return Math.max(0, parseFloat($(id).value) || 0); };
+  var price = g("a-price"), cost = g("a-cost");
+  var hrs = g("a-work") + g("a-rev") + g("a-meet") + g("a-travel") + g("a-chase");
+  var rate = hrs > 0 ? (price - cost) / hrs : 0;
+  var req = state.s ? state.s.reqHourly : 0;
+  $("a-rate").textContent = ils(rate) + " לשעה";
+  $("a-rate").style.color = rate < req ? "var(--bad)" : "var(--good)";
+  var billed = g("a-work");
+  var unpaid = hrs - billed;
+  var txt = "סך הכול <b>" + (Math.round(hrs*10)/10) + " שעות</b> הלכו על הלקוח הזה, מתוכן <b>" +
+            (Math.round(unpaid*10)/10) + " שעות שלא נכללו בתמחור</b>. ";
+  if (rate < req){
+    var need = req * hrs + cost;
+    txt += "התעריף שהיעד שלך דורש הוא " + ils(req) + " לשעה, ולכן הלקוח הזה היה צריך להיות מתומחר ב־<b>" +
+           ils(need) + "</b> — כלומר " + ils(need - price) + " יותר ממה שגבית.";
+  } else {
+    txt += "זה מעל התעריף שהיעד שלך דורש (" + ils(req) + " לשעה). הלקוח הזה עובד בשבילך.";
+  }
+  $("a-say").innerHTML = txt;
+}
+["a-price","a-work","a-rev","a-meet","a-travel","a-chase","a-cost"].forEach(function(id){
+  $(id).addEventListener("input", renderAudit);
+});
+
+/* ---------- suite render --------------------------------- */
+function renderSuite(){
+  var s = state.s, p = state.prof, u = p.unit;
+
+  /* T1 */
+  $("t1-prof").textContent = p.name;
+  $("t1-body").innerHTML = p.bench.map(function(r){
+    return "<tr><td>" + r[0] + "</td><td><b>" + r[1] + "</b></td><td>" + (r[2] || "—") + "</td></tr>";
+  }).join("");
+  $("t1-where").innerHTML =
+    "מחיר היעד שלך הוא <b style='color:var(--brass)'>" + ils(s.target) + "</b> ל" + u +
+    ", ומחיר הרצפה שלך הוא " + ils(s.floor) + ". אם מחיר היעד שלך נמוך מהטווח המקובל בטבלה — " +
+    "אתה מתמחר מתחת לשוק גם לפי הצרכים שלך וגם לפי מה שהלקוח כבר מוכן לשלם. " +
+    "אם הוא גבוה מהטווח — אתה צריך למכור ערך, לא מחיר, או להוריד עלויות ושעות לפרויקט.";
+
+  /* T2 */
+  var min = Math.max(1, Math.round(s.floor * 0.55));
+  var max = Math.round(Math.max(s.premium * 1.35, s.current * 1.5));
+  var r = $("s-range");
+  $("s-min").textContent = ils(min);
+  $("s-max").textContent = ils(max);
+  if (!r.dataset.init){
+    r.value = Math.round(((s.target - min) / (max - min)) * 100);
+    r.dataset.init = "1";
+  }
+  var upd = function(){
+    var price = min + (max - min) * (r.value / 100);
+    $("s-price").textContent = ils(price);
+
+    var nowClients = s.projPerMonth;
+    var nowRev = (s.current - s.pe) * nowClients;
+    var needClients = (price - s.pe) > 0 ? s.revNeeded / (price - s.pe) : Infinity;
+    var newRev = (price - s.pe) * needClients;
+
+    $("c-now").textContent = Math.round(nowClients * 10) / 10 + " × " + ils(s.current);
+    $("c-now-sub").textContent = "נטו אחרי הוצאות ישירות: " + ils(nowRev) + " לחודש";
+    $("c-new").textContent = (isFinite(needClients) ? Math.ceil(needClients) : "—") + " × " + ils(price);
+    $("c-new-sub").textContent = isFinite(needClients)
+      ? "מספיק כדי לכסות את היעד ואת ההוצאות: " + ils(newRev) + " לחודש"
+      : "המחיר נמוך מההוצאה הישירה לפרויקט";
+
+    var d = $("s-delta");
+    if (!isFinite(needClients)){
+      d.className = "delta bad";
+      d.innerHTML = "במחיר הזה כל " + u + " עולה לך יותר ממה שהוא מכניס.";
+    } else {
+      var fewer = nowClients - needClients;
+      if (fewer > 0.4){
+        d.className = "delta good";
+        d.innerHTML = "במחיר של <b>" + ils(price) + "</b> אתה מגיע לאותו יעד עם <b>" +
+          (Math.round(fewer * 10) / 10) + " " + u + "ים פחות בחודש</b> — כ־" +
+          Math.round(fewer * s.ph) + " שעות עבודה שמתפנות לך, בלי לוותר על שקל.";
+      } else if (fewer < -0.4){
+        d.className = "delta bad";
+        d.innerHTML = "במחיר הזה תצטרך <b>" + (Math.round(-fewer * 10) / 10) + " " + u +
+          "ים יותר בחודש</b> כדי להגיע לאותו יעד — כ־" + Math.round(-fewer * s.ph) +
+          " שעות עבודה נוספות שאין לך.";
+      } else {
+        d.className = "delta";
+        d.innerHTML = "המחיר הזה שקול פחות או יותר לקצב שאתה עובד בו היום.";
+      }
+    }
+  };
+  r.oninput = upd;
+  upd();
+
+  /* T3 seed from diagnostic once */
+  if (!$("n-rev").dataset.seeded){
+    $("n-rev").value = Math.round((s.current - s.pe) * s.projPerMonth * 12 / 1000) * 1000;
+    $("n-exp").value = Math.round(s.exp * 12);
+    $("n-rev").dataset.seeded = "1";
+  }
+  renderNet();
+
+  /* T4 seed */
+  if (!$("a-price").dataset.seeded){
+    $("a-price").value = Math.round(s.current);
+    $("a-work").value  = s.ph;
+    $("a-cost").value  = s.pe;
+    $("a-price").dataset.seeded = "1";
+  }
+  renderAudit();
+
+  /* T5 plan */
+  var jump = s.current > 0 ? ((s.target - s.current) / s.current) * 100 : 100;
+  var gentle = jump <= 20;
+  $("t5-lede").innerHTML = jump <= 0
+    ? "אתה כבר מעל מחיר היעד. התוכנית כאן היא תוכנית שימור: איך לא לחזור אחורה."
+    : "הפער שלך הוא <b style='color:var(--brass)'>" + Math.round(jump) + "%</b> ממחיר היעד. " +
+      (gentle ? "זה פער קטן — אפשר לסגור אותו במהלך אחד." :
+                "זה פער גדול מכדי לסגור במכה אחת מול לקוחות קיימים. התוכנית מפצלת אותו לשלושה מהלכים.");
+
+  var mid = s.current + (s.target - s.current) * (gentle ? 1 : 0.55);
+  var steps = jump <= 0 ? [
+    ["ימים 1–30","קבע רצפה בכתב","רשום לעצמך ש<b>" + ils(s.floor) + "</b> הוא המחיר שמתחתיו אתה לא יורד, גם לא ל״לקוח טוב״. רצפה שלא כתובה נשחקת."],
+    ["ימים 31–60","העלה את הלקוח החלש ביותר","גם כשאתה מעל היעד, יש לקוח אחד שמשלם הכי פחות ולוקח הכי הרבה. הוא הבא בתור."],
+    ["ימים 61–90","העלה את מחיר היעד","אם לא איבדת אף לקוח בשלושה חודשים — המחיר שלך נמוך מדי. העלה ב־10% ובדוק שוב."]
+  ] : [
+    ["ימים 1–14","לקוחות חדשים בלבד","מהיום, כל פנייה חדשה מקבלת <b>" + ils(s.target) + "</b>. אתה לא מודיע לאיש, לא מסביר ולא מתנצל. זה פשוט המחיר. כאן אתה בודק שהשוק בולע את המספר בלי סיכון."],
+    ["ימים 15–45","הלקוח הכי מתיש שלך", "בחר את הלקוח עם התעריף האפקטיבי הנמוך ביותר — בדוק אותו בגלאי הלקוח המפסיד — והודע לו על מעבר ל<b>" + ils(gentle ? s.target : mid) + "</b>. אם הוא עוזב, פינית שעות ללקוח במחיר החדש."],
+    ["ימים 46–90", gentle ? "יישור כל השאר" : "מהלך שני על השאר",
+      gentle ? "עדכן את שאר הלקוחות ל<b>" + ils(s.target) + "</b> בהודעה אחת, עם תאריך תחילה של 30 יום קדימה."
+             : "העבר את שאר הלקוחות ל<b>" + ils(mid) + "</b> עכשיו, ותכנן את המהלך ל<b>" + ils(s.target) + "</b> לעוד שלושה חודשים. שני מהלכים של 25% נבלעים טוב יותר ממהלך אחד של 55%."]
+  ];
+  $("t5-plan").innerHTML = steps.map(function(x){
+    return '<div class="step"><div class="when">' + x[0] + '</div><div><h4>' + x[1] + '</h4><p>' + x[2] + '</p></div></div>';
+  }).join("");
+
+  /* T6 scripts */
+  var scripts = [
+    ["הודעה ללקוח קיים על עדכון מחיר",
+"היי [שם],\n\nרציתי לעדכן אותך מראש: החל מ־1 ב[חודש] המחיר ל" + u + " אצלי עומד על " + ils(s.target) + ".\nכל עבודה שנסגרה לפני התאריך הזה נשארת במחיר הקיים.\n\nשמח להמשיך לעבוד יחד.\n[שם]"],
+    ["הצעת מחיר ללקוח חדש",
+"היי [שם], תודה על הפנייה.\n\nל" + u + " כפי שתיארת, המחיר הוא " + ils(s.target) + ".\nהמחיר כולל [מה כלול], ועד [מספר] סבבי תיקונים.\nמעבר לזה — " + ils(Math.round(s.reqHourly)) + " לשעה.\n\nלוח הזמנים: [X] ימי עבודה מרגע האישור.\nתנאי תשלום: [50% מקדמה / שוטף].\n\nאשמח לקבוע התחלה.\n[שם]"],
+    ['תשובה ל"זה יקר לי"',
+"אני מבין. המחיר הזה משקף [מה שאתה באמת נותן: ניסיון, זמן, אחריות, אחריות לתוצאה].\n\nאם התקציב שלך הוא [סכום], אני יכול להתאים את ההיקף: [מה יורד — פחות סבבים, פחות תוצרים, לוח זמנים ארוך יותר].\nמה שאני לא עושה זה להוריד מחיר על אותו היקף.\n\nמה מתאים לך?"],
+    ["גבייה על חריגת היקף",
+"היי [שם],\n\nהבקשה הזו נמצאת מחוץ למה שסוכם ([מה סוכם]).\nאני שמח לעשות את זה — התוספת היא " + ils(Math.round(s.reqHourly)) + " לשעה, ומדובר בכ־[X] שעות.\n\nמאשר שאתחיל?"]
+  ];
+  $("t6-scripts").innerHTML = scripts.map(function(x, i){
+    return '<div class="script"><header><h4>' + x[0] + '</h4>' +
+           '<button class="copy" data-copy="' + i + '">העתק</button></header>' +
+           '<pre id="sc' + i + '">' + x[1].replace(/</g,"&lt;") + '</pre></div>';
+  }).join("");
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var txt = $("sc" + b.getAttribute("data-copy")).textContent;
+      if (navigator.clipboard) navigator.clipboard.writeText(txt);
+      b.textContent = "הועתק";
+      setTimeout(function(){ b.textContent = "העתק"; }, 1600);
+    });
+  });
+
+  /* T7 report */
+  var d = new Date();
+  $("report").innerHTML =
+    '<div class="rhead"><h3>דוח התמחור שלי</h3><div class="tag">' + p.name + " · " +
+      d.toLocaleDateString("he-IL") + '</div></div>' +
+    '<div class="rgrid">' +
+      cell("מחיר רצפה", ils(s.floor)) +
+      cell("מחיר יעד", ils(s.target)) +
+      cell("מחיר פרימיום", ils(s.premium)) +
+      cell("תעריף שעה נדרש", ils(s.reqHourly)) +
+    '</div>' +
+    '<ul>' +
+      '<li>היעד החודשי שהגדרתי: <b>' + ils(s.income) + '</b>, מעבר להוצאות של ' + ils(s.exp) + ' בחודש.</li>' +
+      '<li>אני מחייב על <b>' + s.hours + ' שעות</b> בחודש, וזה כ־<b>' +
+        (Math.round(s.projPerMonth * 10) / 10) + ' ' + u + 'ים</b>.</li>' +
+      '<li>' + s.vac + ' ימי חופשה ומחלה בשנה מתומחרים פנימה.</li>' +
+      '<li>היום אני גובה <b>' + ils(s.current) + '</b>. ' +
+        (s.gapPerProj > 0 ? 'הפער למחיר היעד: <b>' + ils(s.gapPerProj) + '</b> ל' + u +
+          ', כלומר ' + ils(Math.abs(s.gapPerMonth)) + ' בחודש.' : 'אני מעל מחיר היעד.') + '</li>' +
+      '<li>המחיר שמתחתיו אני לא יורד: <b>' + ils(s.floor) + '</b>.</li>' +
+    '</ul>';
+}
+function cell(k,v){ return '<div class="rcell"><div class="k">' + k + '</div><div class="v num">' + v + '</div></div>'; }
+$("btn-print").addEventListener("click", function(){ window.print(); });
+
+/* ---------- boot ----------------------------------------- */
+$("lbl-ph").textContent = state.prof.ph;
+$("lbl-pe").textContent = state.prof.pe;
+renderDiag();
+if (load("taarif_unlocked") === "1") doUnlock(true);
+
+})();
+</script>
+
+</body>
+</html>
